@@ -6,14 +6,25 @@
     <ul class="list-group list-group-flush" id="notes">
       {% for note in user.notes %}
       <li class="list-group-item">
-        {{ note.data }}
 
+        <input name="edit_note{{note.id}}" id="edit_note{{note.id}}" class="form-control" value="{{ note.data }}"></input>
+
+        <button type="button" class="close" onClick="editNote({{note.id}})">
+          <span aria-hidden="true">Edit</span>
+        </button>
         <button type="button" class="close" onClick="deleteNote({{note.id}})">
           <span aria-hidden="true">&times;</span>
         </button>
+
+
+
       </li>
       {% endfor %}
     </ul>
+
+
+
+
     <form method="POST">
       <textarea name="note" id="note" class="form-control"></textarea>
       <br />
@@ -21,4 +32,5 @@
         <button type="submit" class="btn btn-primary">Add Note</button>
       </div>
     </form>
+
     {% endblock %}
